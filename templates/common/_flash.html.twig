@@ -1,0 +1,18 @@
+{% for message in app.flashes('successX') %}
+            <div class="alert alert-success">
+                {{ message }} POP
+            </div>
+        {% endfor %}
+{% for message in app.flashes('dangerX') %}
+            <div class="alert alert-danger">
+                {{ message }} PAP
+            </div>
+        {% endfor %}
+
+        {% for type,messages in app.flashes%}
+        {% for message in messages%}
+        
+        <div class="alert alert-{{type}}" role="alert">{{message}} PIP</div>
+
+        {% endfor %}
+        {% endfor %}

@@ -1,0 +1,40 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello PostController!{% endblock %}
+
+{% block body %}
+
+<div class="container">
+
+<h2> Bienvenue sur mon INSTAG  w3 ! </h2>
+<p> <small>fait avec symfony 5 </small></p>
+
+<div class="row">
+{% for post in posts %}
+{# .card>h2.card-tittle +p.maclasse.card-content finir avec TAB#}
+ <div class="card alert-success col-3 m-1 p-1">
+    <h2 class="card-title alert-dangerX">{{post.title}}</h2>
+    
+    {#   remarque ci dessous post.author cest lobjet user // il est affiché grace a la fonctionmagique __tostring de user #}
+    {# <p class="card-content">{{post.author}}</p> #}
+    {# <p class="card-content">{{post.author.id}}</p> #}
+    {#  ci dessous jaffiche et accede au champ de lobjet pas besoin de fnction magique  #}
+    <p class="card-content">{{post.author.id}} is {{post.author.email}}</p>
+    <img src="{{asset('assets/images/uploads/' ~ post.picture)}}" alt="POPO">
+    <p class="card-content">{{post.text}}</p>
+
+    <form action="{{path('app_post_edit',{id:post.id}) }}">
+    <input type="submit" value="Modification" class=" bg-dark text-success">
+    </form>  
+    <form action="{{path('app_post_delete',{id:post.id})}}" method="POST">
+    <input type="hidden" name="_method" value="delete">
+    <input type="hidden" name="csrf_token" value="{{csrf_token('post_delete_'~ post.id )}}">
+    <input type="submit" value="Suppression" class=" bg-dark text-danger">
+    </form>
+ 
+</div>
+{% endfor %}
+</div>
+
+</div>
+{% endblock %}

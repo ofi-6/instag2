@@ -1,0 +1,20 @@
+{% extends 'base.html.twig'%}
+
+{#   ci dessous alternative #}
+{# {% block title 'Create a post"' %} #}
+
+{% block title %}
+Create a post
+{% endblock %}
+
+{% block body %}
+
+<section>
+
+<h1> Creat a post</h1>
+
+{{ include ('common/_form.html.twig') }}
+
+</section>
+
+{% endblock %}
